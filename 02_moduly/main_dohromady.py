@@ -1,3 +1,8 @@
+"""Ukázka toho, jak by to být nemělo.
+
+Vše je tu v jednom modulu (souboru).
+"""
+
 import random
 
 ZDI = r"""

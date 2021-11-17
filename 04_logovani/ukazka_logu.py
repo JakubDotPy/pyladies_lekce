@@ -1,14 +1,23 @@
 import logging
 
+# základní nastavení logování
+
 logging.basicConfig(
-    filename='muj_vypis.log',
-    # format='%(asctime)s %(module)s - %(levelname)s - %(message)s',
     level=logging.DEBUG,
+    format='%(asctime)s [%(levelname)-8s] - %(message)s',  # log format má speciální způsob zápisu
+    handlers=[
+        logging.FileHandler('muj_vypis.log'),  # toto přidá logování do souboru
+        logging.StreamHandler()  # toto bude zapisovat do konzole (jako print)
+        ]
     )
+
+# pomocí log.info, log.debug ... pak zapisuji
 log = logging.getLogger(__name__)
 
 
 def funkce_s_logy():
+    """Tato funkce počítá a hezky informuje pomocí logování."""
+
     log.info('Nacitam cislo od uzivatele')
     cislo = int(input('Zadej cislo: '))
     log.info(f'Zadane cislo je: {cislo}')
@@ -28,4 +37,5 @@ def funkce_s_logy():
     print(f'Vysledek je: {cislo}')
 
 
+print('-' * 50, '\n', funkce_s_logy.__doc__)
 funkce_s_logy()

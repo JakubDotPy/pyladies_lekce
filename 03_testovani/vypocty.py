@@ -3,8 +3,24 @@ Modul s vypocty.
 
 Funkce v tomto modulu budeme testovat pomocí knihovny pytest
 
-\venv\Scripts\activate
-python -m pip install pytest
+Instalace pytestu:
+    Do příkazové řádky (ne pythonu, >>> ale jen pc, > ) zadejte:
+
+    python -m pip install pytest
+
+
+Testy v tomto souboru spusťe v příkazové řádce, tak, že se přepnete do složky,
+ve které tento soubor je (pomocí příkazů "cd") a pak v této složce spusťte příkaz:
+
+    pytest -v vypocty.py
+
+Tím se spustí pytest na konrétní soubor.
+(-v zaručí víc ukecanější výstup)
+
+V případě, že máte testy v samostatném souboru (musí být pojmenovaný test_**.py,
+což je doporučené, stačí být ve stejné složce a jen spustit příkaz:
+
+    pytest -v
 
 """
 
@@ -27,38 +43,44 @@ def vydel(a, b):
 
 # ------------------------------------------------------------------------------
 
-# def test_scitani():
-#     assert secti(1, 1) == 2
-#     assert secti(5, 2) == 7
-#
-#
-# def test_odcitani():
-#     assert odecti(1, 1) == 0
-#     assert odecti(5, 2) == 3
-#
-#
-# def test_deleni():
-#     assert vydel(1, 1) == 1
-#     assert vydel(6, 2) == 3
-#     # assert vydel(10, 0) == 0
-#
-#
-# def test_deleni_nulou():
-#     with pytest.raises(ZeroDivisionError):
-#         vydel(10, 0)
+def test_scitani():
+    assert secti(1, 1) == 2
+    assert secti(5, 2) == 7
+
+
+def test_odcitani():
+    assert odecti(1, 1) == 0
+    assert odecti(5, 2) == 3
+
+
+def test_deleni():
+    assert vydel(1, 1) == 1
+    assert vydel(6, 2) == 3
+    # assert vydel(10, 0) == 0
+
+
+def test_deleni_nulou():
+    with pytest.raises(ZeroDivisionError):
+        vydel(10, 0)
+
 
 # ------------------------------------------------------------------------------
 
-# @pytest.mark.parametrize(
-#     ('a', 'b', 'expected'),
-#     [
-#         (1, 2, 3),
-#         (3, 5, 8),
-#         (10, 20, 30),
-#         ]
-#     )
-# def test_scitani_parametr(a, b, expected):
-#     assert secti(a, b) == expected
+# ukázka parametrizovaného testu
+# NOTE: tohle je jen na ukázku, nemusíte se to učit ani chápat
+
+
+@pytest.mark.parametrize(
+    ('a', 'b', 'expected'),
+    [
+        (1, 2, 3),
+        (3, 5, 8),
+        (10, 20, 30),
+        ]
+    )
+def test_scitani_parametr(a, b, expected):
+    assert secti(a, b) == expected
+
 
 """
 Úkol: 
@@ -83,38 +105,39 @@ Bonus: použij TDD (napiš si první test)
 
 # Řešení:
 
-#
-# def pocitam_znaky(text, znak, index):
-#     if not 0 < index < len(text):
-#         raise IndexError
-#     # NOTE: pozor na jednicku
-#     return text[index + 1:].count(znak)
+
+def pocitam_znaky(text, znak, index):
+    if not 0 < index < len(text):
+        raise IndexError
+    # NOTE: pozor na jednicku
+    return text[index + 1:].count(znak)
 
 
-# def test_pocitani_znaku():
-#     assert pocitam_znaky('aaaaabbbbbcccc', 'b', 7) == 2
-#     assert pocitam_znaky('aaaaabbbbbcccc', 'b', 8) == 1
-#     assert pocitam_znaky('aaaaabbbbbcccc', 'c', 8) == 4
-#     assert pocitam_znaky('aaaaabbbbbcccc', 'a', 5) == 0
-#     assert pocitam_znaky('aaaaabbbbbcccc', 'a', 1) == 3
-#
-#     # neexistujici znak!
-#     assert pocitam_znaky('aaaaabbbbbcccc', 'h', 5) == 0
-#
-#     with pytest.raises(IndexError):
-#         assert pocitam_znaky('asdf', 'a', -1)
-#         assert pocitam_znaky('asdf', 'a', 20)
+def test_pocitani_znaku():
+    assert pocitam_znaky('aaaaabbbbbcccc', 'b', 7) == 2
+    assert pocitam_znaky('aaaaabbbbbcccc', 'b', 8) == 1
+    assert pocitam_znaky('aaaaabbbbbcccc', 'c', 8) == 4
+    assert pocitam_znaky('aaaaabbbbbcccc', 'a', 5) == 0
+    assert pocitam_znaky('aaaaabbbbbcccc', 'a', 1) == 3
 
-# parametrizovany
-# @pytest.mark.parametrize(
-#     ('text', 'znak', 'index', 'expected'),
-#     [
-#         ('aaaaabbbbbcccc', 'b', 7, 2),
-#         ('aaaaabbbbbcccc', 'b', 8, 1),
-#         ('aaaaabbbbbcccc', 'c', 8, 4),
-#         ('aaaaabbbbbcccc', 'a', 5, 0),
-#         ('aaaaabbbbbcccc', 'a', 1, 3),
-#         ]
-#     )
-# def test_pocitani_znaku(text, znak, index, expected):
-#     assert pocitam_znaky(text, znak, index) == expected
+    # neexistujici znak!
+    assert pocitam_znaky('aaaaabbbbbcccc', 'h', 5) == 0
+
+    with pytest.raises(IndexError):
+        assert pocitam_znaky('asdf', 'a', -1)
+        assert pocitam_znaky('asdf', 'a', 20)
+
+
+# parametrizovany test
+@pytest.mark.parametrize(
+    ('text', 'znak', 'index', 'expected'),
+    [
+        ('aaaaabbbbbcccc', 'b', 7, 2),
+        ('aaaaabbbbbcccc', 'b', 8, 1),
+        ('aaaaabbbbbcccc', 'c', 8, 4),
+        ('aaaaabbbbbcccc', 'a', 5, 0),
+        ('aaaaabbbbbcccc', 'a', 1, 3),
+        ]
+    )
+def test_pocitani_znaku(text, znak, index, expected):
+    assert pocitam_znaky(text, znak, index) == expected

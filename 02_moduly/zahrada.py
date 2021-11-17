@@ -9,7 +9,7 @@ print('Importuji zahradu')
 def posekat(pocet_lidi):
     """Spočítá, jak dlouho se bude sekat zahrada."""
     doba_sekani = (VELIKOST_ZAHRADY * CLOVEK_HODINA_M2) / pocet_lidi
-    print(f'{pocet_lidi} seka zahradu {doba_sekani:.2f} hodin')
+    print(f'{pocet_lidi} lidi sekají zahradu {doba_sekani:.2f} hodin')
 
 
 def zasadit_kytky(nazev, pocet):

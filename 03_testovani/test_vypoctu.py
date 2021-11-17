@@ -1,7 +1,13 @@
+"""Samostatný soubor s testy.
+
+Takto je to nejlepší.
+Je potřeba naimportovat funkce, které budem testovat a ty pak použít v testech.
+"""
+
 import pytest
 
-from vypocty import secti
 from vypocty import odecti
+from vypocty import secti
 
 
 def test_scitani_stringu():

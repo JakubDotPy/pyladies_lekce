@@ -1,42 +1,53 @@
+"""Tento modul spusťte pro ukázku pokročilého logování."""
+
 import logging
+
 from log_config import setup_logging
 
-# NOTE: basic logging
-logging.basicConfig(
-    filename='muj_vypis.log',
-    # format='%(asctime)s %(module)s - %(levelname)s - %(message)s',
-    level=logging.DEBUG,
-    )
-log = logging.getLogger('root')
+# NOTE: nastavení logování
+setup_logging()
+log = logging.LoggerAdapter(logging.getLogger('basic'), {"sID": 'script'.ljust(13)})
 
-# NOTE: advanced logging
-# setup_logging()
-# log = logging.LoggerAdapter(logging.getLogger('basic'), {"sID": 'script'.ljust(13)})
+log.info('Toto je log z mého skriptu.')
+log.info('Nyní mohu začít')
 
 
-log.info('This is log from my script.')
-log.info('Now I am ready to start.')
-
-
-def division_function(a, b):
-    log.info('Running division funciton.')
-    log.debug(f'got {a=} and {b=}')
-    result = None
+def funkce_deleni(a, b):
+    log.debug('Spoustim delici funkci.')
+    log.debug(f'dostal jsem a={a} a b={b}')
+    vysledek = None
     try:
-        log.debug('dividing')
-        result = a / b
+        log.debug('delim')
+        vysledek = a / b
     except:
-        log.exception('dividing unsuccessfull')
+        log.exception('deleni se nepovedlo')
     else:
-        log.debug(f'result is {result}')
+        log.debug(f'vysledek je {vysledek}')
     finally:
-        return result
+        return vysledek
 
 
-log.info('I need to call the division function')
-result_of_division = division_function(10, 3)
+log.info('Nyni budu volat delici fukci.')
+sada_cisel = [
+    (10, 3),
+    (20, 4),
+    (15, 0),
+    (20, 10),
+    ]
 
-if result_of_division < 5:
-    log.warning('!!! The division was too low !!!')
-else:
-    log.info('Everything in normal.')
+for pokus, cisla in enumerate(sada_cisel):
+    log.info('-' * 50)
+    log.info(f'{pokus}. pokus')
+    vysledek_deleni = funkce_deleni(*cisla)
+    log.info(f'vysledek je {vysledek_deleni}')
+
+    if not vysledek_deleni:
+        log.error('nedostali jsme zadny vysledek')
+        continue
+
+    if vysledek_deleni < 5:
+        log.warning('!!! vysledek byl prilis nizky !!!')
+    else:
+        log.info('vse v poradku')
+
+log.info('Konec skriptu.')

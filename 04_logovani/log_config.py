@@ -1,3 +1,5 @@
+"""Tento soubor slouží pouze jako ukázka pokročilého nastavení logování."""
+
 import logging.config
 import os
 

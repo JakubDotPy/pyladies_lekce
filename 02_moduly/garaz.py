@@ -2,6 +2,7 @@ import random
 
 print('Importuji garaz')
 
+
 def uklidit_garaz():
     mysi = random.randint(0, 50)
     print(f'Vyhnal jsem {mysi} myší!!!')

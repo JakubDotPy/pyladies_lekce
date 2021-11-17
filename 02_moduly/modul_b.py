@@ -1,3 +1,8 @@
+"""Pomocný modul k modulu a.
+
+Slouží na uvození chyby cyklického importu.
+"""
+
 from modul_a import PROMENNA_PRO_B
 
 PROMENNA_PRO_A = 'Tohle potrebje modul A'

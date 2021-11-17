@@ -1,21 +1,24 @@
-# TODO: vysvětlit různé druhy importu
-from dum import postavit_strechu
-from dum import postavit_zdi
-from dum import postavit_zaklady
+"""Všimněte si různých druhů importu a jejich použití."""
 
-from garaz import *
-
+# Je možný, ale pak musíte volat pomocí názvu a tečky.
+# řádek 21 a 22
 import zahrada
+# Tenhle je doporučený
+from dum import postavit_strechu
+from dum import postavit_zaklady
+from dum import postavit_zdi
+# Tenhle spíš nepoužívat
+from garaz import *
 
 postavit_strechu()
 postavit_zdi()
 postavit_zaklady()
 
 roztridit_sroubky(pocet=200, hromadky=8)
+uklidit_garaz()
 
 zahrada.posekat(pocet_lidi=3)
 zahrada.zasadit_kytky(nazev='kopretiny', pocet=20)
-
 
 """
 Úkol: 

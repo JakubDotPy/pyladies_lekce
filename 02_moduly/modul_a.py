@@ -1,3 +1,5 @@
+"""Tento modul při spuštění vyvolá chybu cyklického importu."""
+
 from modul_b import PROMENNA_PRO_A
 
 PROMENNA_PRO_B = 'Tohle potrebje modul b'
@@ -8,4 +10,3 @@ def modul_a_rika(text):
 
 
 modul_a_rika(PROMENNA_PRO_A)
-
