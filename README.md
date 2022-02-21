@@ -1,5 +1,13 @@
-# kód k pyladies lekci na téma "testování"
+# Poznámky k lekcím Pyladies
 
-Pomůže při řešení [domácích úkolů][domaci_ukoly].
+## Začátečnice
 
-[domaci_ukoly]: https://projekty.pyladies.cz/session?course=pyladies-2021-plzen-autumn&session=test
+### Lekce
+
+- [Testování, vyjimky, logování](zacatecnice/vyjimky_test_log)
+
+## Pokročilé
+
+### Lekce
+
+- [Iterables, generators, iterools...](pokrocile/iterables)
