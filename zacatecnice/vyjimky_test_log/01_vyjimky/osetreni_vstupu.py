@@ -63,6 +63,8 @@ print(' ukázka vyjimek '.center(50, '-'))
 
 # Nastupují výjimky
 
+# Pro úplnost a spokojenost IDE musíme na chvíli vypnout kontrolu pořadí výjimek
+# noinspection PyExceptClausesOrder
 try:
 
     print('V tomto bloku očekávám, že může nasta výjimka.')
