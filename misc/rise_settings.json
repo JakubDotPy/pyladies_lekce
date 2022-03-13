@@ -1,0 +1,7 @@
+{
+  "rise": {
+    "start_slideshow_at": "beginning",
+    "scroll": true,
+    "enable_chalkboard": true
+  }
+}
