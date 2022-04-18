@@ -1,7 +1,7 @@
 """Všimněte si různých druhů importu a jejich použití."""
 
 # Je možný, ale pak musíte volat pomocí názvu a tečky.
-# řádek 21 a 22
+# řádek 20 a 21
 import zahrada
 # Tenhle je doporučený
 from dum import postavit_strechu
